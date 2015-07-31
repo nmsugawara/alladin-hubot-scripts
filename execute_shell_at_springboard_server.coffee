@@ -20,10 +20,10 @@ module.exports = (robot) ->
 			target_date = msg.match[2]
 		# 実行コマンド
 		command_su = "sudo su - nmadmin\n"
-		command_cd = "cd /tmp\n"
+		command_cd = "cd #{config.script_dir}\n"
 		command_exec_sh = ""
 		for server_host in config.ssh_log_server_host_list
-			command_exec_sh = command_exec_sh + "sh ./search_log_files.sh \"#{server_host}\" \"#{config.ssh_log_server_user}\" '#{target_string}' #{target_date}\n"
+			command_exec_sh = command_exec_sh + "sh ./#{config.script_file_name_search_log_at_tracking_campaign} \"#{server_host}\" \"#{config.ssh_log_server_user}\" '#{target_string}' #{target_date}\n"
 		command_exit = "exit\nexit\n"
 		command = command_su + command_cd + command_exec_sh + command_exit
 		result = ""
